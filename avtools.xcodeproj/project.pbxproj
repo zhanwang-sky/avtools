@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		D9E3ED912C634DFC00FEBBCD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9E3ED902C634DFC00FEBBCD /* main.cpp */; };
+		D9EC72DA2C63A4FB00636F69 /* libavdevice.61.1.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EC72D22C63A4FB00636F69 /* libavdevice.61.1.100.dylib */; };
+		D9EC72DC2C63A4FB00636F69 /* libavcodec.61.3.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EC72D32C63A4FB00636F69 /* libavcodec.61.3.100.dylib */; };
+		D9EC72DE2C63A4FB00636F69 /* libpostproc.58.1.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EC72D42C63A4FB00636F69 /* libpostproc.58.1.100.dylib */; };
+		D9EC72E02C63A4FB00636F69 /* libswscale.8.1.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EC72D52C63A4FB00636F69 /* libswscale.8.1.100.dylib */; };
+		D9EC72E22C63A4FB00636F69 /* libavfilter.10.1.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EC72D62C63A4FB00636F69 /* libavfilter.10.1.100.dylib */; };
+		D9EC72E42C63A4FB00636F69 /* libavformat.61.1.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EC72D72C63A4FB00636F69 /* libavformat.61.1.100.dylib */; };
+		D9EC72E62C63A4FB00636F69 /* libavutil.59.8.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EC72D82C63A4FB00636F69 /* libavutil.59.8.100.dylib */; };
+		D9EC72E82C63A4FB00636F69 /* libswresample.5.1.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EC72D92C63A4FB00636F69 /* libswresample.5.1.100.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +33,14 @@
 /* Begin PBXFileReference section */
 		D9E3ED8D2C634DFC00FEBBCD /* avtools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = avtools; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E3ED902C634DFC00FEBBCD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D9EC72D22C63A4FB00636F69 /* libavdevice.61.1.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavdevice.61.1.100.dylib; path = /opt/homebrew/Cellar/ffmpeg/7.0.2/lib/libavdevice.61.1.100.dylib; sourceTree = "<group>"; };
+		D9EC72D32C63A4FB00636F69 /* libavcodec.61.3.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.61.3.100.dylib; path = /opt/homebrew/Cellar/ffmpeg/7.0.2/lib/libavcodec.61.3.100.dylib; sourceTree = "<group>"; };
+		D9EC72D42C63A4FB00636F69 /* libpostproc.58.1.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpostproc.58.1.100.dylib; path = /opt/homebrew/Cellar/ffmpeg/7.0.2/lib/libpostproc.58.1.100.dylib; sourceTree = "<group>"; };
+		D9EC72D52C63A4FB00636F69 /* libswscale.8.1.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libswscale.8.1.100.dylib; path = /opt/homebrew/Cellar/ffmpeg/7.0.2/lib/libswscale.8.1.100.dylib; sourceTree = "<group>"; };
+		D9EC72D62C63A4FB00636F69 /* libavfilter.10.1.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavfilter.10.1.100.dylib; path = /opt/homebrew/Cellar/ffmpeg/7.0.2/lib/libavfilter.10.1.100.dylib; sourceTree = "<group>"; };
+		D9EC72D72C63A4FB00636F69 /* libavformat.61.1.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavformat.61.1.100.dylib; path = /opt/homebrew/Cellar/ffmpeg/7.0.2/lib/libavformat.61.1.100.dylib; sourceTree = "<group>"; };
+		D9EC72D82C63A4FB00636F69 /* libavutil.59.8.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.59.8.100.dylib; path = /opt/homebrew/Cellar/ffmpeg/7.0.2/lib/libavutil.59.8.100.dylib; sourceTree = "<group>"; };
+		D9EC72D92C63A4FB00636F69 /* libswresample.5.1.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libswresample.5.1.100.dylib; path = /opt/homebrew/Cellar/ffmpeg/7.0.2/lib/libswresample.5.1.100.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +48,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9EC72DC2C63A4FB00636F69 /* libavcodec.61.3.100.dylib in Frameworks */,
+				D9EC72DA2C63A4FB00636F69 /* libavdevice.61.1.100.dylib in Frameworks */,
+				D9EC72E22C63A4FB00636F69 /* libavfilter.10.1.100.dylib in Frameworks */,
+				D9EC72E42C63A4FB00636F69 /* libavformat.61.1.100.dylib in Frameworks */,
+				D9EC72E62C63A4FB00636F69 /* libavutil.59.8.100.dylib in Frameworks */,
+				D9EC72DE2C63A4FB00636F69 /* libpostproc.58.1.100.dylib in Frameworks */,
+				D9EC72E82C63A4FB00636F69 /* libswresample.5.1.100.dylib in Frameworks */,
+				D9EC72E02C63A4FB00636F69 /* libswscale.8.1.100.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +67,7 @@
 			children = (
 				D9E3ED8F2C634DFC00FEBBCD /* avtools */,
 				D9E3ED8E2C634DFC00FEBBCD /* Products */,
+				D9EC72D12C63A4FB00636F69 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +85,21 @@
 				D9E3ED902C634DFC00FEBBCD /* main.cpp */,
 			);
 			path = avtools;
+			sourceTree = "<group>";
+		};
+		D9EC72D12C63A4FB00636F69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D9EC72D32C63A4FB00636F69 /* libavcodec.61.3.100.dylib */,
+				D9EC72D22C63A4FB00636F69 /* libavdevice.61.1.100.dylib */,
+				D9EC72D62C63A4FB00636F69 /* libavfilter.10.1.100.dylib */,
+				D9EC72D72C63A4FB00636F69 /* libavformat.61.1.100.dylib */,
+				D9EC72D82C63A4FB00636F69 /* libavutil.59.8.100.dylib */,
+				D9EC72D42C63A4FB00636F69 /* libpostproc.58.1.100.dylib */,
+				D9EC72D92C63A4FB00636F69 /* libswresample.5.1.100.dylib */,
+				D9EC72D52C63A4FB00636F69 /* libswscale.8.1.100.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +285,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/ffmpeg/7.0.2/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/ffmpeg/7.0.2/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -253,6 +298,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /opt/homebrew/Cellar/ffmpeg/7.0.2/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/homebrew/Cellar/ffmpeg/7.0.2/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
