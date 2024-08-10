@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D9346D1A2C63CA7C00868DD6 /* avformat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9346D182C63CA7C00868DD6 /* avformat.cpp */; };
 		D9E3ED912C634DFC00FEBBCD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9E3ED902C634DFC00FEBBCD /* main.cpp */; };
 		D9EC72DA2C63A4FB00636F69 /* libavdevice.61.1.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EC72D22C63A4FB00636F69 /* libavdevice.61.1.100.dylib */; };
 		D9EC72DC2C63A4FB00636F69 /* libavcodec.61.3.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EC72D32C63A4FB00636F69 /* libavcodec.61.3.100.dylib */; };
@@ -31,6 +32,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D9346D182C63CA7C00868DD6 /* avformat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = avformat.cpp; sourceTree = "<group>"; };
+		D9346D192C63CA7C00868DD6 /* avformat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = avformat.hpp; sourceTree = "<group>"; };
 		D9E3ED8D2C634DFC00FEBBCD /* avtools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = avtools; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E3ED902C634DFC00FEBBCD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D9EC72D22C63A4FB00636F69 /* libavdevice.61.1.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavdevice.61.1.100.dylib; path = /opt/homebrew/Cellar/ffmpeg/7.0.2/lib/libavdevice.61.1.100.dylib; sourceTree = "<group>"; };
@@ -62,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D9BC99D12C63A7C00042A394 /* avtools */ = {
+			isa = PBXGroup;
+			children = (
+				D9346D182C63CA7C00868DD6 /* avformat.cpp */,
+				D9346D192C63CA7C00868DD6 /* avformat.hpp */,
+			);
+			path = avtools;
+			sourceTree = "<group>";
+		};
 		D9E3ED842C634DFC00FEBBCD = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +94,7 @@
 		D9E3ED8F2C634DFC00FEBBCD /* avtools */ = {
 			isa = PBXGroup;
 			children = (
+				D9BC99D12C63A7C00042A394 /* avtools */,
 				D9E3ED902C634DFC00FEBBCD /* main.cpp */,
 			);
 			path = avtools;
@@ -160,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9E3ED912C634DFC00FEBBCD /* main.cpp in Sources */,
+				D9346D1A2C63CA7C00868DD6 /* avformat.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
