@@ -47,8 +47,7 @@ int remux(const std::string& infile, const std::string& outfile) {
       AVStream* ost = NULL;
 
       if (ist->codecpar->codec_type != AVMEDIA_TYPE_AUDIO &&
-          ist->codecpar->codec_type != AVMEDIA_TYPE_VIDEO &&
-          ist->codecpar->codec_type != AVMEDIA_TYPE_SUBTITLE) {
+          ist->codecpar->codec_type != AVMEDIA_TYPE_VIDEO) {
         continue;
       }
 
