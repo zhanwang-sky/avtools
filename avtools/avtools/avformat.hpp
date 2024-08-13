@@ -9,7 +9,6 @@
 #define avformat_hpp
 
 #include <cassert>
-#include <string>
 #include <stdexcept>
 extern "C" {
 #include <libavformat/avformat.h>
@@ -40,7 +39,7 @@ class iFormat : public ioFmt {
  public:
   iFormat() { }
 
-  iFormat(const std::string& url) {
+  iFormat(const char* url) {
     open(url);
   }
 
@@ -48,12 +47,12 @@ class iFormat : public ioFmt {
     close();
   }
 
-  void open(const std::string& url) {
+  void open(const char* url) {
     const char* err_msg = NULL;
 
     assert(!ctx_);
 
-    if (avformat_open_input(&ctx_, url.c_str(), NULL, NULL) < 0) {
+    if (avformat_open_input(&ctx_, url, NULL, NULL) < 0) {
       err_msg = "fail to open input stream";
       goto err_exit;
     }
@@ -84,7 +83,7 @@ class oFormat : public ioFmt {
  public:
   oFormat() { }
 
-  oFormat(const std::string& filename) {
+  oFormat(const char* filename) {
     open(filename);
   }
 
@@ -92,18 +91,18 @@ class oFormat : public ioFmt {
     close();
   }
 
-  void open(const std::string& filename) {
+  void open(const char* filename) {
     const char* err_msg = NULL;
 
     assert(!ctx_);
 
-    if (avformat_alloc_output_context2(&ctx_, NULL, NULL, filename.c_str()) < 0) {
+    if (avformat_alloc_output_context2(&ctx_, NULL, NULL, filename) < 0) {
       err_msg = "cannot deduce output format";
       goto err_exit;
     }
 
     if (!(ctx_->oformat->flags & AVFMT_NOFILE)) {
-      if (avio_open(&ctx_->pb, filename.c_str(), AVIO_FLAG_WRITE) < 0) {
+      if (avio_open(&ctx_->pb, filename, AVIO_FLAG_WRITE) < 0) {
         err_msg = "fail to open output file";
         goto err_exit;
       }

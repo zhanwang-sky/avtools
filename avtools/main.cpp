@@ -9,14 +9,13 @@
 #include <exception>
 #include <iostream>
 #include <map>
-#include <string>
 #include "avformat.hpp"
 
 using std::cout;
 using std::cerr;
 using std::endl;
 
-int remux(const std::string& infile, const std::string& outfile) {
+int remux(const char* infile, const char* outfile) {
   AVPacket* packet = NULL;
   int ret = 0;
 
@@ -39,7 +38,7 @@ int remux(const std::string& infile, const std::string& outfile) {
     std::map<int, int> stream_mapping;
 
     // dump input format
-    av_dump_format(ic, 0, infile.c_str(), 0);
+    av_dump_format(ic, 0, infile, 0);
 
     // create output stream
     for (int i = 0; i < nr_istreams; ++i) {
@@ -64,7 +63,7 @@ int remux(const std::string& infile, const std::string& outfile) {
     }
 
     // dump output format
-    av_dump_format(oc, 0, outfile.c_str(), 1);
+    av_dump_format(oc, 0, outfile, 1);
 
     // write header
     if (ofmt.write_header() < 0) {
@@ -118,7 +117,7 @@ int main(int argc, char* argv[]) {
   int rc = 0;
 
   if (argc != 3) {
-    cerr << "Usage: ./avtools <input.mkv> <output.mp4>\n";
+    cerr << "Usage: ./avtools <input.mp4> <output.flv>\n";
     exit(EXIT_FAILURE);
   }
 
