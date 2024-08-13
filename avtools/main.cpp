@@ -36,7 +36,7 @@ int remux(const char* infile, const char* outfile,
     using clock_type = std::chrono::steady_clock;
 
     avtools::iFormat ifmt(infile);
-    avtools::oFormat ofmt(outfmt, outfile);
+    avtools::oFormat ofmt(outfile, outfmt);
 
     AVFormatContext* ic = ifmt.ctx();
     AVFormatContext* oc = ofmt.ctx();
@@ -123,9 +123,9 @@ int remux(const char* infile, const char* outfile,
 
       time_elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(clock_type::now() - start_time).count();
       if (time_span_ms - time_elapsed_ms > 1000) {
-        cout << pkt_cnt << " frames processed\n";
         if (real_time) {
-          int64_t sleep_time_ms = (time_span_ms - time_elapsed_ms) * 5 / 4;
+          int64_t sleep_time_ms = (time_span_ms - time_elapsed_ms) * 4 / 5;
+          cout << pkt_cnt << " frames processed\n";
           std::this_thread::sleep_for(std::chrono::milliseconds(sleep_time_ms));
         }
       }

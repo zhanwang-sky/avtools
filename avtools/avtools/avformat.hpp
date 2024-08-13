@@ -83,12 +83,8 @@ class oFormat : public ioFmt {
  public:
   oFormat() { }
 
-  oFormat(const char* filename) {
-    open(filename);
-  }
-
-  oFormat(const char* format, const char* url) {
-    open(url, format);
+  oFormat(const char* filename, const char* format = NULL) {
+    open(filename, format);
   }
 
   virtual ~oFormat() {
