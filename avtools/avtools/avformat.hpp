@@ -87,16 +87,20 @@ class oFormat : public ioFmt {
     open(filename);
   }
 
+  oFormat(const char* format, const char* url) {
+    open(url, format);
+  }
+
   virtual ~oFormat() {
     close();
   }
 
-  void open(const char* filename) {
+  void open(const char* filename, const char* format = NULL) {
     const char* err_msg = NULL;
 
     assert(!ctx_);
 
-    if (avformat_alloc_output_context2(&ctx_, NULL, NULL, filename) < 0) {
+    if (avformat_alloc_output_context2(&ctx_, NULL, format, filename) < 0) {
       err_msg = "cannot deduce output format";
       goto err_exit;
     }
