@@ -68,13 +68,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D9BC99D12C63A7C00042A394 /* avtools */ = {
+		D9BC99D12C63A7C00042A394 /* ffmpeg */ = {
 			isa = PBXGroup;
 			children = (
 				D9346D182C63CA7C00868DD6 /* avformat.cpp */,
 				D9346D192C63CA7C00868DD6 /* avformat.hpp */,
 			);
-			path = avtools;
+			path = ffmpeg;
 			sourceTree = "<group>";
 		};
 		D9E3ED842C634DFC00FEBBCD = {
@@ -97,7 +97,7 @@
 		D9E3ED8F2C634DFC00FEBBCD /* avtools */ = {
 			isa = PBXGroup;
 			children = (
-				D9BC99D12C63A7C00042A394 /* avtools */,
+				D9BC99D12C63A7C00042A394 /* ffmpeg */,
 				D9E3ED902C634DFC00FEBBCD /* main.cpp */,
 			);
 			path = avtools;
