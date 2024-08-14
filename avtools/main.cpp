@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <chrono>
 #include <exception>
+#include <functional>
 #include <iostream>
 #include <map>
 #include <thread>
@@ -18,7 +19,59 @@ using std::cout;
 using std::cerr;
 using std::endl;
 
-DEFINE_bool(streaming, false, "streaming");
+DEFINE_string(a, "dump", "action");
+DEFINE_string(f, "", "output format");
+
+static bool ValidateAction(const char* flagname, const std::string& value) {
+  if (value == "dump" || value == "remux") {
+    return true;
+  }
+  cerr << "Possible values for '-" << flagname << "' are: \"dump\", \"remux\".\n";
+  return false;
+}
+DEFINE_validator(a, &ValidateAction);
+
+class FFProbe {
+ public:
+  using on_streams_cb = std::function<void(const AVStream* const*, int)>;
+  using on_packet_cb = std::function<void(AVPacket*)>;
+
+  FFProbe(const char* url, const on_streams_cb& on_streams, const on_packet_cb& on_packet)
+      : ifmt_(url), on_streams_(on_streams), on_packet_(on_packet) {
+    on_construct();
+  }
+
+  FFProbe(const char* url, on_streams_cb&& on_streams, on_packet_cb&& on_packet)
+      : ifmt_(url), on_streams_(std::move(on_streams)), on_packet_(std::move(on_packet)) {
+    on_construct();
+  }
+
+  virtual ~FFProbe() {
+    av_packet_free(&packet_);
+  }
+
+  int next() {
+    int rc = ifmt_.read_frame(packet_);
+    if (rc == 0) {
+      on_packet_(packet_);
+      av_packet_unref(packet_);
+    }
+    return rc;
+  }
+
+ private:
+  void on_construct() {
+    if (!(packet_ = av_packet_alloc())) {
+      throw std::runtime_error("fail to alloc AVPacket");
+    }
+    on_streams_(ifmt_.ctx()->streams, ifmt_.ctx()->nb_streams);
+  }
+
+  avtools::AVInputFormat ifmt_;
+  on_streams_cb on_streams_;
+  on_packet_cb on_packet_;
+  AVPacket* packet_ = NULL;
+};
 
 int remux(const char* infile, const char* outfile,
           const char* outfmt = NULL,
@@ -141,21 +194,12 @@ int remux(const char* infile, const char* outfile,
 }
 
 int main(int argc, char* argv[]) {
-  int rc = 0;
-
   gflags::ParseCommandLineFlags(&argc, &argv, true);
 
-  if (argc != 3) {
-    cerr << "Usage: ./avtools [-streaming=true] <input_url> <output_url>\n";
+  if (argc != 2 && argc != 3) {
+    cerr << "Usage: ./avtools [-a {dump|remux}] [-f <out_fmt>] <input_url> [output_url]\n";
     exit(EXIT_FAILURE);
   }
-
-  if (FLAGS_streaming) {
-    rc = remux(argv[1], argv[2], "flv", true);
-  } else {
-    rc = remux(argv[1], argv[2]);
-  }
-  cout << "done, rc=" << rc << endl;
 
   return 0;
 }
