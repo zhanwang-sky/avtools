@@ -13,6 +13,7 @@
 #include <map>
 #include <thread>
 #include <gflags/gflags.h>
+#include <h264bitstream/h264_stream.h>
 #include "avformat.hpp"
 
 using std::cout;
@@ -21,6 +22,7 @@ using std::endl;
 
 DEFINE_string(a, "dump", "action");
 DEFINE_string(f, "", "output format");
+DEFINE_int32(vframes, -1, "number of video frames to process");
 
 static bool ValidateAction(const char* flagname, const std::string& value) {
   if (value == "dump" || value == "remux") {
@@ -193,13 +195,76 @@ int remux(const char* infile, const char* outfile,
   return ret;
 }
 
+int h264bitstream_dump(const char* input_url, int vframes) {
+  const AVStream* h264_stream = NULL;
+  int frame_cnt = 0;
+
+  h264_stream_t* h = h264_new();
+  if (!h) {
+    cerr << "fail to init h264bitstream library\n";
+    return -1;
+  }
+
+  auto on_streams = [&h264_stream](const AVStream* const* streams, int nr_streams) {
+    for (int i = 0; i < nr_streams; ++i) {
+      if (streams[i]->codecpar->codec_id == AV_CODEC_ID_H264) {
+        h264_stream = streams[i];
+        break;
+      }
+    }
+  };
+
+  auto on_packet = [&h264_stream, &frame_cnt, &h](AVPacket* packet) {
+    if (packet->stream_index != h264_stream->index) {
+      return;
+    }
+    ++frame_cnt;
+    for (int pos = 0, nal_start = 0, nal_end = 0;
+         pos < packet->size &&
+         find_nal_unit(packet->data + pos, packet->size - pos, &nal_start, &nal_end) != 0;
+         pos += nal_end) {
+      cout << ">>> frame " << frame_cnt << ": [" << pos + nal_start << "," << pos + nal_end << ") / " << packet->size << endl;
+      read_nal_unit(h, &packet->data[pos + nal_start], nal_end - nal_start);
+      debug_nal(h, h->nal);
+    }
+    cout << endl;
+  };
+
+  try {
+    FFProbe prober(input_url, on_streams, on_packet);
+    if (!h264_stream) {
+      throw std::runtime_error("no h264 stream found");
+    }
+    for (int i = 0; i < vframes; ++i) {
+      if (prober.next() != 0) {
+        break;
+      }
+    }
+    cout << frame_cnt << " frames retrieved\n";
+    h264_free(h);
+  } catch (const std::exception& e) {
+    cout << e.what() << endl;
+    h264_free(h);
+    return -1;
+  }
+
+  return 0;
+}
+
 int main(int argc, char* argv[]) {
+  int rc = 0;
+
   gflags::ParseCommandLineFlags(&argc, &argv, true);
 
   if (argc != 2 && argc != 3) {
-    cerr << "Usage: ./avtools [-a {dump|remux}] [-f <out_fmt>] <input_url> [output_url]\n";
+    cerr << "Usage: ./avtools [-a {dump|remux}] [-vframes <N>] [-f <out_fmt>] <input_url> [output_url]\n";
     exit(EXIT_FAILURE);
   }
+
+  if (FLAGS_a == "dump") {
+    rc = h264bitstream_dump(argv[1], FLAGS_vframes);
+  }
+  cout << "done, rc=" << rc << endl;
 
   return 0;
 }

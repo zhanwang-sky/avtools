@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D90CBA032C6B5C2E00E97D7B /* libgflags.2.2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D90CBA022C6B5C2E00E97D7B /* libgflags.2.2.2.dylib */; };
 		D9346D1A2C63CA7C00868DD6 /* avformat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9346D182C63CA7C00868DD6 /* avformat.cpp */; };
+		D984FD732C6CED65005EA45D /* libh264bitstream.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D984FD722C6CED65005EA45D /* libh264bitstream.0.dylib */; };
 		D9E3ED912C634DFC00FEBBCD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9E3ED902C634DFC00FEBBCD /* main.cpp */; };
 		D9EC72DA2C63A4FB00636F69 /* libavdevice.61.1.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EC72D22C63A4FB00636F69 /* libavdevice.61.1.100.dylib */; };
 		D9EC72DC2C63A4FB00636F69 /* libavcodec.61.3.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EC72D32C63A4FB00636F69 /* libavcodec.61.3.100.dylib */; };
@@ -36,6 +37,7 @@
 		D90CBA022C6B5C2E00E97D7B /* libgflags.2.2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgflags.2.2.2.dylib; path = /opt/homebrew/Cellar/gflags/2.2.2/lib/libgflags.2.2.2.dylib; sourceTree = "<group>"; };
 		D9346D182C63CA7C00868DD6 /* avformat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = avformat.cpp; sourceTree = "<group>"; };
 		D9346D192C63CA7C00868DD6 /* avformat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = avformat.hpp; sourceTree = "<group>"; };
+		D984FD722C6CED65005EA45D /* libh264bitstream.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libh264bitstream.0.dylib; path = /opt/homebrew/Cellar/h264bitstream/0.2.0/lib/libh264bitstream.0.dylib; sourceTree = "<group>"; };
 		D9E3ED8D2C634DFC00FEBBCD /* avtools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = avtools; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E3ED902C634DFC00FEBBCD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D9EC72D22C63A4FB00636F69 /* libavdevice.61.1.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavdevice.61.1.100.dylib; path = /opt/homebrew/Cellar/ffmpeg/7.0.2/lib/libavdevice.61.1.100.dylib; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				D9EC72E82C63A4FB00636F69 /* libswresample.5.1.100.dylib in Frameworks */,
 				D9EC72E02C63A4FB00636F69 /* libswscale.8.1.100.dylib in Frameworks */,
 				D90CBA032C6B5C2E00E97D7B /* libgflags.2.2.2.dylib in Frameworks */,
+				D984FD732C6CED65005EA45D /* libh264bitstream.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +109,7 @@
 		D9EC72D12C63A4FB00636F69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D984FD722C6CED65005EA45D /* libh264bitstream.0.dylib */,
 				D90CBA022C6B5C2E00E97D7B /* libgflags.2.2.2.dylib */,
 				D9EC72D32C63A4FB00636F69 /* libavcodec.61.3.100.dylib */,
 				D9EC72D22C63A4FB00636F69 /* libavdevice.61.1.100.dylib */,
@@ -306,11 +310,13 @@
 				HEADER_SEARCH_PATHS = (
 					/opt/homebrew/Cellar/ffmpeg/7.0.2/include,
 					/opt/homebrew/Cellar/gflags/2.2.2/include,
+					/opt/homebrew/Cellar/h264bitstream/0.2.0/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/homebrew/Cellar/ffmpeg/7.0.2/lib,
 					/opt/homebrew/Cellar/gflags/2.2.2/lib,
+					/opt/homebrew/Cellar/h264bitstream/0.2.0/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -323,11 +329,13 @@
 				HEADER_SEARCH_PATHS = (
 					/opt/homebrew/Cellar/ffmpeg/7.0.2/include,
 					/opt/homebrew/Cellar/gflags/2.2.2/include,
+					/opt/homebrew/Cellar/h264bitstream/0.2.0/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/homebrew/Cellar/ffmpeg/7.0.2/lib,
 					/opt/homebrew/Cellar/gflags/2.2.2/lib,
+					/opt/homebrew/Cellar/h264bitstream/0.2.0/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
