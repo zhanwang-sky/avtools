@@ -16,34 +16,34 @@ extern "C" {
 
 namespace avtools {
 
-class ioFmt {
+class AVFormat {
  public:
-  ioFmt(const ioFmt&) = delete;
-  ioFmt(ioFmt&&) = delete;
-  ioFmt& operator=(const ioFmt&) = delete;
-  ioFmt& operator=(ioFmt&&) = delete;
+  AVFormat(const AVFormat&) = delete;
+  AVFormat(AVFormat&&) = delete;
+  AVFormat& operator=(const AVFormat&) = delete;
+  AVFormat& operator=(AVFormat&&) = delete;
 
   AVFormatContext* ctx() const {
     return ctx_;
   }
 
  protected:
-  ioFmt() { }
+  AVFormat() { }
 
-  virtual ~ioFmt() { }
+  virtual ~AVFormat() { }
 
   AVFormatContext* ctx_ = NULL;
 };
 
-class iFormat : public ioFmt {
+class AVInputFormat : public AVFormat {
  public:
-  iFormat() { }
+  AVInputFormat() { }
 
-  iFormat(const char* url) {
+  AVInputFormat(const char* url) {
     open(url);
   }
 
-  virtual ~iFormat() {
+  virtual ~AVInputFormat() {
     close();
   }
 
@@ -79,15 +79,15 @@ class iFormat : public ioFmt {
   }
 };
 
-class oFormat : public ioFmt {
+class AVOutputFormat : public AVFormat {
  public:
-  oFormat() { }
+  AVOutputFormat() { }
 
-  oFormat(const char* filename, const char* format = NULL) {
+  AVOutputFormat(const char* filename, const char* format = NULL) {
     open(filename, format);
   }
 
-  virtual ~oFormat() {
+  virtual ~AVOutputFormat() {
     close();
   }
 

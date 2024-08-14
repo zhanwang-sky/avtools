@@ -35,8 +35,8 @@ int remux(const char* infile, const char* outfile,
   try {
     using clock_type = std::chrono::steady_clock;
 
-    avtools::iFormat ifmt(infile);
-    avtools::oFormat ofmt(outfile, outfmt);
+    avtools::AVInputFormat ifmt(infile);
+    avtools::AVOutputFormat ofmt(outfile, outfmt);
 
     AVFormatContext* ic = ifmt.ctx();
     AVFormatContext* oc = ofmt.ctx();
