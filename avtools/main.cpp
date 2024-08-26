@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <chrono>
 #include <exception>
+#include <fstream>
 #include <iostream>
 #include <thread>
 #include "avformat.hpp"
@@ -93,15 +94,72 @@ int streaming(const char* url, const char* inputs[]) {
   return 0;
 }
 
+int parse_stream(const char* infile) {
+  std::ifstream ifs(infile, std::ifstream::binary);
+  if (!ifs) {
+    cerr << "Fail to open input file\n";
+    return -1;
+  }
+
+  AVFrame* frame = av_frame_alloc();
+  if (!frame) {
+    cerr << "Fail to alloc AVFrame\n";
+    return -1;
+  }
+
+  try {
+    int frame_cnt = 0;
+    avtools::AVDecoder decoder(AV_CODEC_ID_GIF);
+
+    auto on_packet = [&frame, &frame_cnt, &decoder](AVPacket* packet) {
+      ++frame_cnt;
+
+      if (decoder.send_packet(packet) != 0) {
+        cerr << "Error sending packt\n";
+        return;
+      }
+
+      for (int i = 0; ; ++i) {
+        int rc = decoder.receive_frame(frame);
+        if (rc < 0) {
+          if (rc != AVERROR(EAGAIN) && rc != AVERROR_EOF) {
+            cerr << "Error receiving frame\n";
+          }
+          break;
+        }
+        cout << "frame[" << frame_cnt << ":" << i << "] "
+             << frame->width << "*" << frame->height << " "
+             << frame->format << endl;
+      }
+    };
+
+    avtools::FFParser parser(ifs, decoder, on_packet);
+
+    while (!parser.next());
+
+    cout << frame_cnt << " frames parsed\n";
+
+  } catch (const std::exception& e) {
+    cerr << e.what() << endl;
+    av_frame_free(&frame);
+    return -1;
+  }
+
+  av_frame_free(&frame);
+
+  return 0;
+}
+
 int main(int argc, const char* argv[]) {
   int rc = 0;
 
-  if (argc < 3) {
-    cerr << "Usage: ./avtools <url> <sample1.h264> [sample2.h264,...]\n";
+  if (argc != 2) {
+    cerr << "Usage: ./avtools <input.gif>\n";
     exit(EXIT_FAILURE);
   }
 
-  rc = streaming(argv[1], argv + 2);
+  rc = parse_stream(argv[1]);
+
   cout << "done, rc=" << rc << endl;
 
   return 0;

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D91AC7892C72013C0047076D /* ffmpeg_helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D91AC7872C72013C0047076D /* ffmpeg_helper.cpp */; };
 		D9346D1A2C63CA7C00868DD6 /* avformat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9346D182C63CA7C00868DD6 /* avformat.cpp */; };
+		D96035762C78CD38005BC95C /* avcodec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D96035742C78CD38005BC95C /* avcodec.cpp */; };
 		D984FD732C6CED65005EA45D /* libh264bitstream.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D984FD722C6CED65005EA45D /* libh264bitstream.0.dylib */; };
 		D990B49B2C6F527A00211975 /* libavcodec.61.11.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D990B4932C6F527A00211975 /* libavcodec.61.11.100.dylib */; };
 		D990B49D2C6F527A00211975 /* libpostproc.58.2.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D990B4942C6F527A00211975 /* libpostproc.58.2.100.dylib */; };
@@ -38,6 +39,8 @@
 		D91AC7882C72013C0047076D /* ffmpeg_helper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ffmpeg_helper.hpp; sourceTree = "<group>"; };
 		D9346D182C63CA7C00868DD6 /* avformat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = avformat.cpp; sourceTree = "<group>"; };
 		D9346D192C63CA7C00868DD6 /* avformat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = avformat.hpp; sourceTree = "<group>"; };
+		D96035742C78CD38005BC95C /* avcodec.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = avcodec.cpp; sourceTree = "<group>"; };
+		D96035752C78CD38005BC95C /* avcodec.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = avcodec.hpp; sourceTree = "<group>"; };
 		D984FD722C6CED65005EA45D /* libh264bitstream.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libh264bitstream.0.dylib; path = /opt/homebrew/Cellar/h264bitstream/0.2.0/lib/libh264bitstream.0.dylib; sourceTree = "<group>"; };
 		D990B4932C6F527A00211975 /* libavcodec.61.11.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.61.11.100.dylib; path = "/opt/third-party/ffmpeg/lib/libavcodec.61.11.100.dylib"; sourceTree = "<group>"; };
 		D990B4942C6F527A00211975 /* libpostproc.58.2.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpostproc.58.2.100.dylib; path = "/opt/third-party/ffmpeg/lib/libpostproc.58.2.100.dylib"; sourceTree = "<group>"; };
@@ -74,6 +77,8 @@
 		D9BC99D12C63A7C00042A394 /* ffmpeg */ = {
 			isa = PBXGroup;
 			children = (
+				D96035742C78CD38005BC95C /* avcodec.cpp */,
+				D96035752C78CD38005BC95C /* avcodec.hpp */,
 				D9346D182C63CA7C00868DD6 /* avformat.cpp */,
 				D9346D192C63CA7C00868DD6 /* avformat.hpp */,
 				D91AC7872C72013C0047076D /* ffmpeg_helper.cpp */,
@@ -182,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9E3ED912C634DFC00FEBBCD /* main.cpp in Sources */,
+				D96035762C78CD38005BC95C /* avcodec.cpp in Sources */,
 				D9346D1A2C63CA7C00868DD6 /* avformat.cpp in Sources */,
 				D91AC7892C72013C0047076D /* ffmpeg_helper.cpp in Sources */,
 			);
