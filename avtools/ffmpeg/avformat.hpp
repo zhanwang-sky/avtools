@@ -16,26 +16,24 @@ extern "C" {
 
 namespace avtools {
 
-class AVFormat {
+class AVFormatBase {
  public:
-  AVFormat(const AVFormat&) = delete;
-  AVFormat(AVFormat&&) = delete;
-  AVFormat& operator=(const AVFormat&) = delete;
-  AVFormat& operator=(AVFormat&&) = delete;
+  AVFormatBase(const AVFormatBase&) = delete;
+  AVFormatBase& operator=(const AVFormatBase&) = delete;
 
   AVFormatContext* ctx() const {
     return ctx_;
   }
 
  protected:
-  AVFormat() { }
+  AVFormatBase() { }
 
-  virtual ~AVFormat() { }
+  virtual ~AVFormatBase() { }
 
   AVFormatContext* ctx_ = NULL;
 };
 
-class AVInputFormat : public AVFormat {
+class AVInputFormat : public AVFormatBase {
  public:
   AVInputFormat() { }
 
@@ -79,30 +77,30 @@ class AVInputFormat : public AVFormat {
   }
 };
 
-class AVOutputFormat : public AVFormat {
+class AVOutputFormat : public AVFormatBase {
  public:
   AVOutputFormat() { }
 
-  AVOutputFormat(const char* filename, const char* format = NULL) {
-    open(filename, format);
+  AVOutputFormat(const char* url, const char* format = NULL) {
+    open(url, format);
   }
 
   virtual ~AVOutputFormat() {
     close();
   }
 
-  void open(const char* filename, const char* format = NULL) {
+  void open(const char* url, const char* format = NULL) {
     const char* err_msg = NULL;
 
     assert(!ctx_);
 
-    if (avformat_alloc_output_context2(&ctx_, NULL, format, filename) < 0) {
+    if (avformat_alloc_output_context2(&ctx_, NULL, format, url) < 0) {
       err_msg = "cannot deduce output format";
       goto err_exit;
     }
 
     if (!(ctx_->oformat->flags & AVFMT_NOFILE)) {
-      if (avio_open(&ctx_->pb, filename, AVIO_FLAG_WRITE) < 0) {
+      if (avio_open(&ctx_->pb, url, AVIO_FLAG_WRITE) < 0) {
         err_msg = "fail to open output file";
         goto err_exit;
       }
